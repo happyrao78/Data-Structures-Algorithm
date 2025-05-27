@@ -57,7 +57,7 @@ class four{
 };
 //functional templates
 template <class x>
-void swapp(x a, x b){  //swapping without using third variable
+void swapp(x a, x b){  //swapping without using third variable and with pass by value jisme original value ki copy jati hai 
     a=a+b;
     b=a-b;
     a=a-b;
