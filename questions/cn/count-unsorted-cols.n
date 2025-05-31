@@ -1,0 +1,16 @@
+best approach
+-------------
+
+string=["bde","dcf","gat"];
+int r=string.size();
+int c=string[0].size();
+int count=0;
+for(int col=0;col<c;col++){
+    for(int row=1;row<r;row++){
+        if(string[row][col]<string[row-1][col]){
+            count++;
+            break;
+        }
+    }
+}
+    return count;
