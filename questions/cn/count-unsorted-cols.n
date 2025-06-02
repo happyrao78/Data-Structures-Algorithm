@@ -1,4 +1,4 @@
-best approach
+best approach to count unsorted columns or lexicograhically i.e a,b,c = true and a,c,b = false and count++
 -------------
 
 string=["bde","dcf","gat"];
