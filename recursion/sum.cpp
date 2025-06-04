@@ -6,7 +6,7 @@ int add(int n){
     return n + add( n-1);
 }
 
-int add2(int n, int sum){
+int add2(int n, int sum=0){
     if(n < 1){
         cout<<sum;
         return 0;
