@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+// push the max element to last
 void bubble_sort(int arr[],int n){
     for(int i=n-1;i>=1;i--){
         int didswap=0;
