@@ -11,7 +11,7 @@ int parting(vector<int> &arr, int low, int high){
 int pivot=arr[low]; //correct position of the current value
 int i=low;
 int j=high;
-while(low<high){
+while(i<j){
     // number jo pivot se just bd haiwo dhund rhe hai
     while(arr[i] <=pivot && i<=high-1){
         i++;
@@ -36,8 +36,9 @@ if(low<high){
     qs(arr,pIndex+1,high);
 }
 }
-void quick_sort(vector <int> &arr,int n){
+vector<int> quick_sort(vector <int> &arr,int n){
     qs(arr,0,n-1);
+    return arr;
 }
 int main(){
     int n;
