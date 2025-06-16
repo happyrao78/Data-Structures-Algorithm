@@ -1,3 +1,4 @@
+//tc=o(n) in optimal case and in brute force tc-> o(nlogn) i.e sorting and then finding the n-1 index
 #include<bits/stdc++.h>
 using namespace std;
 int large(int arr[],int n){
@@ -9,6 +10,7 @@ int large(int arr[],int n){
     }
     return largest;
 }
+
 int main(){
     int size;
     cout<<"enter size of array:"<<endl;

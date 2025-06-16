@@ -1,3 +1,5 @@
+// tc-> optimal -o(n) and brute force -> tc- o(nlogn)+n
+
 int secondSmallest(vector<int> &a,int n){
     int small=a[0];
     int ssmall=INT_MAX;
