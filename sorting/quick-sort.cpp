@@ -1,6 +1,7 @@
 /*
 1. it has TC=O(nlogn) but SC=O(1) as it doesnt use any extra array so it is better than merge sort where SC=O(n)
 2. divide and conquer algorithm as we  divide and sort it 
+3. in worst casse scenario time  complexity = O(n2) when pivot is assigned in a already sorrted array so at that time merge sort is better. 
 */
 
 #include<bits/stdc++.h>

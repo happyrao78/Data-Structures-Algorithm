@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//TC= O(nlogn) avg+best+worst case
+//SC= O(n) uses an extra array but is a stable sort 
+
 // divide and merge
 void merge_array(vector<int> &arr,int low, int mid, int high){
     vector <int> temp;
@@ -16,10 +19,12 @@ void merge_array(vector<int> &arr,int low, int mid, int high){
             right++;
         }
     }
+    // check for some remaining values if any on left side 
     while(left<=mid){
         temp.push_back(arr[left]);
         left++;
     }
+    // check for some remaining values if any on righ  side
     while(right<=high){
         temp.push_back(arr[right]);
         right++;
