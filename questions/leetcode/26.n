@@ -1,0 +1,20 @@
+// notes:
+brute force approach - set  use  krege jisme sari values kyuki unique hoti hai but uski tc =  nlogn andd also hume index ko iterate krna pdega to fir uski tc will be O(n) so total tc of brute force will be : O(nlogn)+n using set and sc =O(n) as set is there.
+
+secondly, 
+the tc of optimal solution below using two pointer approach will be O(n ) and sc= O(1);
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        int n=nums.size();
+        for(int j=1;j<n;j++){
+            if(nums[i] != nums[j]){
+                nums[i+1]=nums[j];
+                i++;
+            }
+        }
+        return i+1;
+    }
+};
