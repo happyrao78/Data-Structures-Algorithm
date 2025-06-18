@@ -3,14 +3,26 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n=nums.size();
-        k=k%n;
+        k=k%n; 
+        {
+            array ka jitna size hai usse kam hi hoge for eg : [1,2,3,4,5,6,7,8,9,10,11,12] and d=22 so d=d%n=  22%12=2 tak hi rotate krna hai because 12 rotations ke bad to original array hi aajeyga. 
+            new rotated array after 22 steps will be = [3,4,5,6,7,8,9,10,11,12,1,2]
+        }
         int temp[k];
+        {
+            create temp array and insert the values in it 
+        }
         for(int i=0;i<k;i++){
             temp[i]=nums[i];
+        }
+
+        {
+            now shift the values in temp array remaining wali
         }
         for(int i=k;i<n;i++){
             nums[i-k]=nums[i];
         }
+        ab last wali values ko push krdo nums array 
         for(int i=n-k;i<n;i++){
             nums[i]=temp[i-(n-k)];
         }
@@ -30,7 +42,6 @@ public:
 };
 
 // left rotate with optimal Solution tc=o(2n) but sc=o(1)
-
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -41,3 +52,16 @@ public:
     reverse(nums.begin(),nums.end());
     }
 };
+
+//reverse logic
+void reverse(int start, int end){
+start=arr[0];
+end=n-1;
+while(start<end){
+    int temp=arr[start];
+    arr[start]=arr[end];
+    arr[end]=temp;
+    start++;
+    end--;
+}
+}
