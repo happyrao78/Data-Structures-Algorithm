@@ -1,0 +1,20 @@
+#include <bits/stdc++.h> 
+vector<int> rotateArray(vector<int>& arr, int n) {
+    int temp=arr[0];
+    for(int i=1;i<n;i++){
+        arr[i-1]=arr[i];
+    }
+    arr[n-1]=temp;
+    return arr;
+}
+
+notes:
+isme agar overall space complexity puchi jaye to it is O(1);
+parr particular algorithm ki puchi jaye to O(n).
+----------------------------------------------------
+Agar interviewer poochta hai: What is the extra space used? → Answer: O(1) = Only one variable temp used
+
+Agar poochta hai: What is the working space or space complexity of the algorithm in terms of size of data it touches or processes? → Answer: O(n)=Entire array is being processed/modified
+
+
+
