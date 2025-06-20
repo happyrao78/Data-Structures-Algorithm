@@ -1,0 +1,66 @@
+// optimal solution 
+-> it merges two sorted arrays with unique elements only in the new array. or say creates the union of two arrays.
+-> for copying the duplicates also in the merged array , remove the conditons 
+-> Time Complexity: O(m+n), Because at max i runs for n times and j runs for m times. When there are no common elements in arr1 and arr2 and all elements in arr1, arr2 are distinct. 
+Space Complexity : O(m+n) {If Space of Union ArrayList is considered} 
+O(1) {If Space of union ArrayList is not considered}
+
+
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+	int i=0;
+	int j=0;
+	vector<int> unionArr;
+	while(i<m && j<n){
+		if(arr1[i] <= arr2[j]){
+			if(unionArr.size()==0 || unionArr.back() != arr1[i]){
+				unionArr.push_back(arr1[i]);
+			}
+			i++;
+		}
+		else{
+			if(unionArr.size()==0 || unionArr.back() != arr2[j]){
+				unionArr.push_back(arr2[j]);
+			}
+			j++;
+		}
+
+	}
+	// phle array me to elements nhi  reh rhe 
+		while(j<n){
+		if(unionArr.size()==0 || unionArr.back() != arr2[j]){
+				unionArr.push_back(arr2[j]);
+			}
+			j++;
+	}
+	// dusre array me to elements ni rhre 
+	while(i<m){
+		if(unionArr.size()==0 || unionArr.back() != arr1[i]){
+				unionArr.push_back(arr1[i]);
+			}
+			i++;
+	}
+
+	return unionArr;
+}
+------------------------------------------------------------------------------------------------------------------------------------
+
+// brute force
+vector < int > FindUnion(int arr1[], int arr2[], int n, int m) {
+  set < int > s;
+  vector < int > Union;
+  for (int i = 0; i < n; i++)
+    s.insert(arr1[i]);
+  for (int i = 0; i < m; i++)
+    s.insert(arr2[i]);
+  for (auto & it: s)
+    Union.push_back(it);
+  return Union;
+}
+-------------------------
+Time Compleixty : O( (m+n)log(m+n) ) . Inserting an element in a set takes logN time, where N is no of elements in the set. At max set can store m+n elements {when there are no common elements and elements in arr,arr2 are distntict}. So Inserting m+n th element takes log(m+n) time. Upon approximation across inserting all elements in worst, it would take O((m+n)log(m+n) time.
+
+Using HashSet also takes the same time, On average insertion in unordered_set takes O(1) time but sorting the union vector takes O((m+n)log(m+n))  time. Because at max union vector can have m+n elements.
+
+Space Complexity : O(m+n) {If Space of Union ArrayList is considered} 
+
+O(1) {If Space of union ArrayList is not considered}
