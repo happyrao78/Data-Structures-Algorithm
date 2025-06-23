@@ -123,3 +123,42 @@ Reason: The outer while loop i.e. the right pointer can move up to index n-1(the
 Space Complexity: O(1) as we are not using any extra space.
 
 Space Complexity: O(1) as we are not using any extra space.
+------------------------------------------------------------------------------------------------------------------------------------------------
+brute force : tc=o(n3) sc=o(1);
+
+int getLongestSubarray(vector<int>& a, long long k) {
+    int n = a.size(); // size of the array.
+
+    int len = 0;
+    for (int i = 0; i < n; i++) { // starting index
+        for (int j = i; j < n; j++) { // ending index
+            long long s = 0;
+            for (int K = i; K <= j; K++) {
+                s += a[K];
+            }
+
+            if (s == k)
+                len = max(len, j - i + 1);
+        }
+    }
+    return len;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+better approach: tc=o(n2) sc=o(1);
+
+int getLongestSubarray(vector<int>& a, long long k) {
+    
+    int n = a.size(); 
+
+    int len = 0;
+    for (int i = 0; i < n; i++) { 
+        long long s = 0;
+        for (int j = i; j < n; j++) { 
+            s += a[j];
+            if (s == k)
+                len = max(len, j - i + 1);
+        }
+    }
+    return len;
+}
