@@ -4,8 +4,6 @@ if this array is rotated then it becomes : [3,4,5,1,2]; still rotated sorted arr
 but if kisi array me like this : [3,4,5,2,1] jisme do adjacent elements ek dusrre se bade hai to false return krna hai because wo rotated sorted array nhi hua. 
 ** rotated sorted array me bs ek voilation allowed hota hai ye yad rkhna hai bs
 
-
-
 class Solution {
 public:
     bool check(vector<int>& nums) {
