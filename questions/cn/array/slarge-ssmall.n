@@ -16,7 +16,7 @@ int secondSmallest(vector<int> &a,int n){
 }
 int secondLargest(vector<int> &a,int n){
     int large=a[0];
-    int slarge=-1;
+    int slarge=INT_MIN;
     for(int i=0;i<n;i++){
         if(a[i] > large){
             slarge=large;

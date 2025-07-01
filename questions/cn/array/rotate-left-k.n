@@ -1,4 +1,4 @@
-// left rotate brute force with SC=O(n);
+// left rotate brute force with SC=O(n) and tc=o(2n);
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
