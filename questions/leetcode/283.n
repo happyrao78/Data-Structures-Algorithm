@@ -2,15 +2,17 @@ class Solution {
 public:
 // two pointer approach
     void moveZeroes(vector<int>& nums) {
+        phlezero ko find kara and then j pointer ko uspe point krdia 
         int j=-1; //j ko -1 rkha
         int n=nums.size();
         for(int i=0;i<n;i++){
             if(nums[i]==0){
-                j=i;  // phle pointer ko 0 pe rkha i.ej humesha zero ko point krega
+                j=i;  // phle pointer ko 0 pe rkha i.e j humesha zero ko point krega
                 break;
             }
         }
         if(j==-1) return; // non zero values hai sari to return nothing.
+        fir i ko j k next index p point kra and 0 h ya nhi check krke swap krdia
         for(int i=j+1;i<n;i++){
             if(nums[i]!=0){
                 swap(nums[i],nums[j]); // swap krdo zero and non zero values ko apas me and aise zeros last me chale jayege
