@@ -16,6 +16,7 @@ Optimal solution XOR but with TC =O(2N) and SC=O(1)
 
 int missingNumber(vector<int>&a, int N) {
     // Write your code here.
+    
     int xor1=0;
     for(int i=0;i<N;i++){
         xor1^=i;
