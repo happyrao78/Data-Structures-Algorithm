@@ -55,12 +55,20 @@ int getlongestSubarray(vector<int>&nums, int k){
         maxlen=max(maxlen,i+1);
         }
     //find kro remaining
+agar kisi point pe sum1 tha, aur aage jaake sum2 bana
+Toh agar sum2 - sum1 = k, toh matlab sum1+1 se sum2 tak ka subarray ka sum k hai
+Toh hum map check kar rahe hain Kya aisa koi pehle sum tha ki agar main usko minus karu to k milta hai?
+If yes, toh valid subarray mil gaya!
+
     long long rem= sum-k;
     if(preSumMap.find(rem) != preSumMap.end()){
         int len= i-preSumMap[rem];
-        int maxlen=max(maxlen,len);
+        maxlen=max(maxlen,len);
     }
     // edge case for the issue {2,0,0,3} jisme max sub array {0,0,3} hona chia  par agr is edge case ko  nhi dalege to wo {2,0,0} ko lega
+    sirf pehli baar prefix sum ko store karte hain
+Taaki longest wali condition break na ho jaaye
+(jaise [2, 0, 0, 3] mein sum = 2 do baar aayega, toh pehli position hi chahiye)
     if(preSumMap.find(sum)==preSumMap.end()){
         preSumMap[sum]=i;
     }
