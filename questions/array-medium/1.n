@@ -1,5 +1,7 @@
 // optimal solution for variety 2 where we have to return the index jin values ka sum target ke barabr hai
+
 - isme hum hashmap use krege 
+
 - code: 
 class Solution {
 public:
@@ -27,3 +29,28 @@ Space Complexity: O(N) as we use the map data structure.
 
 Note: We have optimized this problem enough. But if in the interview, we are not allowed to use the map data structure, then we should move on to the following approach i.e. two pointer approach. This approach will have the same time complexity as the better approach.
 
+// optimal approach for varitey 1
+
+- using two pointer approach where one pointer will point to left and the right pointer to the n-1 end of array  
+string twoSum(int n, vector<int> &arr, int target) {
+    sort(arr.begin(), arr.end());
+    int left = 0, right = n - 1;
+    while (left < right) {
+        int sum = arr[left] + arr[right];
+        if (sum == target) {
+            return "YES";
+        }
+        else if (sum < target) left++;
+        else right--;
+    }
+    return "NO";
+}
+
+in varitey two jismehume index return krna hota h usme ye achi approach nhi hogi kyuki sorting takes more time jab array big hoga. because For variant 2, we can store the elements of the array along with its index in a new array. Then the rest of the code will be similar. And while returning, we need to return the stored indices instead of returning “YES”. But for this variant, the recommended approach is approach 2 i.e. hashing approach upr wali.
+
+Time Complexity: O(N) + O(N*logN), where N = size of the array.
+Reason: The loop will run at most N times. And sorting the array will take N*logN time complexity.
+
+Space Complexity: O(1) as we are not using any extra space.
+
+brute force me tc=o(n2) and sc=o(1);
