@@ -1,8 +1,8 @@
-// optimal solution for variety 2 where we have to return the index jin values ka sum target ke barabr hai
+// variety 2 
 
 - isme hum hashmap use krege 
-
 - code: 
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -20,15 +20,17 @@ public:
     }
 };
 Complexity:
-Time Complexity: O(N), where N = size of the array.
-Reason: The loop runs N times in the worst case and searching in a hashmap takes O(1) generally. So the time complexity is O(N).
+ordered map: 
+tc= o(nlogn) sc=o(n) //  same as two pointer approach
+unordered map:
+tc= o(n) in best and avg case but in worst case scenario o(n2) and sc=o(n)
 
-Note: In the worst case(which rarely happens), the unordered_map takes O(N) to find an element. In that case, the time complexity will be O(N2). If we use map instead of unordered_map, the time complexity will be O(N* logN) as the map data structure takes logN time to find an element.
+brute force for variety 2: iterate through each element and i+1 and then check for which two values the sum is equal to target. 
+tc=o(n2) and sc=o(1) no extra space we are using in that approach
 
-Space Complexity: O(N) as we use the map data structure.
-
-Note: We have optimized this problem enough. But if in the interview, we are not allowed to use the map data structure, then we should move on to the following approach i.e. two pointer approach. This approach will have the same time complexity as the better approach.
-
+if we go towards the two pointer approach in case where we have to return the index of array elements than we have to firstly sort the given array which will take nlogn time , and then we also have to store the indexes of each element in another array. so it will take a longer time for large arrays and is not a optimal approach for the variety two.
+again tc=o(nlogn) and sc=o(n);
+----------------------------------------
 // optimal approach for varitey 1
 
 - using two pointer approach where one pointer will point to left and the right pointer to the n-1 end of array  
@@ -46,7 +48,6 @@ string twoSum(int n, vector<int> &arr, int target) {
     return "NO";
 }
 
-in varitey two jismehume index return krna hota h usme ye achi approach nhi hogi kyuki sorting takes more time jab array big hoga. because For variant 2, we can store the elements of the array along with its index in a new array. Then the rest of the code will be similar. And while returning, we need to return the stored indices instead of returning “YES”. But for this variant, the recommended approach is approach 2 i.e. hashing approach upr wali.
 
 Time Complexity: O(N) + O(N*logN), where N = size of the array.
 Reason: The loop will run at most N times. And sorting the array will take N*logN time complexity.
@@ -54,3 +55,4 @@ Reason: The loop will run at most N times. And sorting the array will take N*log
 Space Complexity: O(1) as we are not using any extra space.
 
 brute force me tc=o(n2) and sc=o(1);
+better appraoch = ordered map=o(nlogn) and o(n) and unordered map will have tc of o(n) for avg and best case and for worst case it will be tc=o(n2) and sc=o(n);
