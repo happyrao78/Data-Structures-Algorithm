@@ -1,1 +1,40 @@
 // sort 0,1,2 in array
+
+brute force :
+tc=o(nlogn), sc=o(n)
+in brute force we will do sorting using merge sort where we take an extra temp array.
+-------------------------------
+better approach:
+tc=o(2n), sc=o(1)
+we use three count variables and count the frequency of 0,1,2
+then we dynamically fill the array using these frequencies using three for loops which is a better appraoch but still not optimal approach.
+-------------------------------
+optimal approach:
+tc=o(n), sc=o(1)
+using dutch national flag algorithm(red , blue, white)
+we use three pointers low, mid, high
+zero to low-1 
+low to mid-1 
+high+1 to n-1 
+
+actual unsorted part is from mid to high
+code:
+void setarray(int *arr, int n){
+    int low=0;
+    int mid=0;
+    int high=n-1;
+    while(mid<=high){
+        if(arr[mid]==0){
+            swap(arr[low], arr[mid]);
+            low++;
+            mid++;
+        }
+        else if(arr[mid]==1){
+            mid++;
+        }
+        else{
+            swap(arr[high], arr[mid]);
+            high--;
+        }
+    }
+}
