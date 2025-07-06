@@ -1,0 +1,43 @@
+// majority element in an array which appears more than N/2
+
+brute force: 
+- do linear search and store the occurence of each element and then jiski value count ki n/2 se badi hogi wo element return krdege.
+tc=o(n2) and sc=o(1)
+----------------------
+
+better appraoch: 
+- using hashmap where we store the frequency of each element, and then jiski it.second value >n/2 uska it.first elemnt retunr krdege.
+tc=o(n2)+o(n) in case of unordered map worst case scenario, in case of ordered map the tc=o(nlogn)+o(n)
+sc=o(n) as we are using an extra map for frequency.
+----------------------
+
+optimal approach: 
+moore's voting algorithm which means elements ko cancel out krte jao , and jo element last me bch jaye yani wo dominate krega and that is the answer of majority element.
+
+agar cnt ==0 hai to first array ke element ko assign krdege element varibale me and cnt=1;
+aur agar ele==a[i] to cnt++, else cnt--
+fir dusra cnt1=0, and agr same hai ele=a[i]cnt1++;
+and last me agar cnt1>n/2 ? return element : -1;
+
+tc=o(n)
+sc=o(1)
+also agar majority element confirm nhi h ki hoga to ek extra o(n for finding whether majority element exists or not in the array)
+
+code:
+int majority_element(int *arr,int n){
+    int cnt=0;
+    int ele;
+    for(auto i=0;i<n;i++){
+        if(cnt==0){
+            cnt=1;
+            ele=arr[i];
+        }
+        else if(ele==arr[i]) cnt++;
+        else cnt--;
+    }
+    int cnt1=0;
+    for(auto i=0;i<n;i++){
+        if(ele==arr[i]) cnt1++;
+    }
+    return cn1>n/2 ? ele : -1;
+}
