@@ -1,0 +1,26 @@
+// isme hum return krege subarray jiska sum maximum hai , and agr do subarray hai jinka sum brabr hai to we will compare the length and jiski jada length hogi usko prefrence dege hum, we will use kadane algorithm here for the most optimal soltuion
+
+vector<int> maxsubsum(vector<int> arr,int n){
+    vector<int> result;
+    long long sum=0;
+    long long maxi=LONG_MIN;
+    int ansStart=-1; // end index of subarray
+    int ansEnd=-1; // start index of subarray
+    int start=0; // starting index of array after sum=0
+    for(int i=0;i<n;i++){
+        sum+=arr[i]; // adding the elements
+        if(sum > maxi || (sum==maxi && (i-start > ansEnd-ansStart))){ // agr do subarrays ka sum brabr hai then we check for the length, jiski badi hogi usko preference dege hum
+            maxi=sum; // update the sum
+            ansEnd=i;
+            ansStart=start; // update the start
+        }
+        if(sum <0){
+            sum=0;
+            start=i+1; // next index se start kro
+        }
+    }
+    for(int i=ansStart;i<=ansEnd;i++){
+        result.push_back(arr[i]);
+    }
+    return result;
+}
