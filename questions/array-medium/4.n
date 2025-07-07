@@ -1,0 +1,34 @@
+// hume maximum subarray ka sum nikalna hai, bs sum dena hai
+
+brute force=
+tc=o(n3) and sc=o(1)
+iterate krege ahr element ke sath and then jiska maxximum sum h wo return krdege
+------------------
+
+better approach:
+tc=o(n2),sc-o(1)
+ek loop km krdege and pichle element me bs sum add krte jayege
+------------------
+
+optimal approach:
+tc=o(n),sc=o(1)
+
+isme hum kadane's algorithm use krege: Maximum Sum Subarray find karne ke liye — matlab array ka aisa contiguous part jiska sum sabse zyada ho.
+
+code: 
+long long maxsubsum(vector<int> arr, int n){
+    long long sum=0;
+    long long maxi=LONG_MIN;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if(sum>maxi){
+            maxi=sum;
+        }
+        if(sum<0){
+            sum=0;
+        }
+    }
+    if(maxi<0) maxi=0;
+    return maxi;
+}
+isme we only return the maximum element, not the subarray
