@@ -1,0 +1,54 @@
+// equal number of positive and negative numbers in array and rearrange them alternatively
+
+brute force approach:
+seperate the positive and negative values in different arrays and then push them in original array at odd places negative values and at even index positive values.
+
+tc=o(n)+o(n/2)
+sc-o(n)
+
+vector<int> rearrange(vector<int> a){
+    int n=a.size();
+    vector<int> pos,neg;
+    for(int i=0;i<;i++){
+        if(arr[i]>0){
+            pos.push_back(a[i]);
+        }
+        else{
+            neg.push_back(a[i]);
+        }
+    }
+    if(pos.size()>neg.size()){
+        for(i=0;i<neg.size();i++){
+            a[2*i]=pos[i];
+            a[2*i+1]=neg[i];
+        }
+    }
+    else{
+        for(int i=0;i<pos.size();i++){
+            a[2*i]=pos[i];
+            a[2*i+1]=neg[i];
+        }
+    }
+    return a;
+}
+------------------------
+optimal approach:
+we will use posindex and negindex variable , and then use a single iteration to set the alternate values
+tc=o(n), sc=o(n) as we have to use an extra ans array that we will return in last
+
+code:
+vector<int> rearrange_optimal(vector<int> arr, int n){
+    int posindex=0, negindex=1;
+    vector<int> ans(n,0);
+    for(int i=0;i<n;i++){
+        if(arr[i]<0){
+            ans[negindex]=arr[i];
+            negindex+=2;
+        }
+        else{
+            ans[posindex]=arr[i];
+            posindex+=2;
+        }
+    }
+    return ans;
+}
