@@ -1,0 +1,23 @@
+// best time to buy and sell stock to gain maximum profit
+intution:
+if stock is sold on ith day then the minimum price to buy that stock will be from first to i-1th day.
+
+brute force:
+use two loops and agr arr[j]>arr[i] then maxp=max(arr[j]-arr[i],maxp)
+tc=o(n2), sc=o(1)
+------------------
+
+optimal solution:
+we will track the minprice and maxprofit for each value of array
+
+int buysellstock(vector<int> arr){
+    int minPrice=INT_MAX;
+    int maxProfit=INT_MIN;
+    for(int i=0;i<arr.size();i++){
+        minPrice=min(minPrice,arr[i]);
+        maxProfit=max(maxProfit,arr[i]-minPrice);
+    }
+    return maxProfit > 0 ? maxProfit : 0;
+}
+
+tc=o(n), sc=o(1);
