@@ -1,0 +1,28 @@
+// leaders in the array : everything on the right should be smaller
+
+brute force :
+use two loops and when a[j]>a[i] return leader flag as false and push the values in ans vector
+
+time complexity: o(n2) approx
+space complexity=o(n) in worst case where element is leader
+
+----------------
+
+optimal solution:
+
+backtracking the array and then storing the values in ans vector
+tc=o(n)+o(nlogn) if sorting is done , and if they asked for in the array sequence then we will just reverse the ans vector
+sc=o(1)
+
+vector<int> leaders(vector<int> arr, int n){
+    int maxi=INT_MIN;
+    vector<int> ans;
+    for(auto i=n-1;i>=0;i++){
+        if(arr[i]>maxi){
+            ans.push_back(arr[i]);
+        }
+        maxi=max(maxi,arr[i]);
+    }
+    sort(ans.begin(),ans.end()); && if in array sequence then : reverse(ans.begin(),ans.end());
+    return ans;
+}
