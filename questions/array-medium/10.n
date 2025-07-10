@@ -1,0 +1,54 @@
+longest consequent sequence in array
+
+// brute force : 
+longest =1
+run a loop from 0 to n and then ls the array if arr, x+1 == true then increament the x and the counter.
+
+tc=o(n2)
+sc=o(1)
+
+------------
+// better approach:
+
+firstly we will sort the array
+then longest =1, cnt=0,last_small=INT_MIN
+for(int i=0;i<n;i++){
+    if(arr[i]-1 == last_small){
+        cnt+=1;
+        last_small=a[i];
+    }
+    elif(arr[i]!=last_small){
+        cnt=1;
+        last_small=a[i];
+    }
+    longest=max(longest,cnt)
+}
+
+tc=o(n)+o(nlogn) for sorting and for traversing the array sc=o(1)
+
+-------------
+optimal solution : using unordered_set
+tc=o(3n) ~ o(n), sc=o(n)
+also if there is collisions happening in worst case scenario then we will go with the better approach where tc is lest.
+ jo element sequence me ata jayega usko check krege and uski pichlivalue ko
+ int longestsubsequence(vector<int> arr, int n){
+    if(n==0) return 0;
+    int longest=1;
+    unordered_set<int> st;
+    for(int i=0;i<n+i++){
+        st.insert(arr[i]);
+    }
+    for(auto it : st){
+        if(it.find(it-1)==it.end()){
+            int cnt=1;
+            int x=it;
+        
+        while(it.find(x+1)!=it.end()){
+            x+=1;
+            cnt+=1;
+        }
+        longest=max(longest,cnt)
+        }
+    }
+    return longest;
+ }
