@@ -28,6 +28,7 @@ vector<int> result(vector<vector<int>> arr){
         for(int i=bottom;i>=top;i--){
             ans.push_back(arr[i][left]);
         }
+        left++;
     }
     }
     return ans;
