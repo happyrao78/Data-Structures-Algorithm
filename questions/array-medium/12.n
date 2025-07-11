@@ -1,0 +1,44 @@
+// set matrix to onnes
+
+#include <bits/stdc++.h> 
+void setMatrixOnes(vector<vector<int>> &MAT, int n, int m)
+{
+    step1:
+
+    int col0=0;
+    for(int i=0;i<n;i++){
+        if(MAT[i][0]==1) col0=1;
+        for(int j=1;j<m;j++){
+            if(MAT[i][j]==1){
+                MAT[i][0]=1;
+                MAT[0][j]=1;
+            }
+        }
+    }
+
+    step2:
+
+    for(int i=1;i<n;i++){
+        for(int j=1;j<m;j++){
+            if(MAT[i][0]==1 || MAT[0][j]==1){
+                MAT[i][j]=1;
+            }
+        }
+    }
+
+    step3:
+
+    if(MAT[0][0]==1){
+        for(int j=0;j<m;j++){
+            MAT[0][j]=1;
+        }
+    }
+    if(col0==1){
+        for(int i=0;i<n;i++){
+            MAT[i][0]=1;
+        }
+    }
+
+}
+
+time complexity=o(2n) and space complexity =o(1) no extra space only distorting the array
