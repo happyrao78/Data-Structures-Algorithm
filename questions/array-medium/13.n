@@ -1,0 +1,24 @@
+// rotate matrix by 90 degree clockwise
+
+brute force approach by taking ans matrix 
+tc=o(n2) and sc=o(n2)
+---------------------
+
+optimal solution:
+
+tcc=o(n/2*n/2)+o(n*n/2)
+scc=o(1)
+
+void roatematrix(vector<vector<int>> arr){
+    int n=arr.size();
+
+    // transpose the matrix first
+    for(auto i=0;i<n;i++){
+        for(auto j=i;j<n;j++){
+            swap(arr[i][j],arr[j][i]);
+        }
+    }
+    for(auto i=0;i<n;i++){
+        reverse(arr[i].begin(),arr[i].end());
+    }
+}
