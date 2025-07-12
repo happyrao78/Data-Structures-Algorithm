@@ -1,0 +1,29 @@
+count subarrays with given sum 
+
+brute force :
+
+tc=o(n3), sc=o(1)
+
+----------------
+better approach:
+tcc=o(n2),sc=o(1) , just hum j pointer ko hi sum krte jayege no need for new iteration for the sum part
+
+----------------
+
+optimal approach : hashmap approach with prefix sum
+
+tc=o(n), sc=o(n) if unordered map is used in avg and best case. in worst case tc=o(n2) if collsions happen
+
+code:
+int countsubarrays(vector<int> arr, int k){
+    unordered_map<int,int> mpp;
+    mpp[0]=1;
+    int presum=0,count=0;
+    for(auto i=0;i<arr.size();i++){
+        preSum=arr[i];
+        int rem= presum-k;
+        cnt+=mpp[rem]; count ko plus krdo agar map me wo presum value hai
+        mpp[preSum]+=1; next presum ko store kro
+    }
+    return count;
+}
