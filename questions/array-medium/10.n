@@ -39,6 +39,7 @@ also if there is collisions happening in worst case scenario then we will go wit
         st.insert(arr[i]);
     }
     for(auto it : st){
+        agar pichla element hai array me to skip that turn and fall to else block
         if(it.find(it-1)==it.end()){
             int cnt=1;
             int x=it;
