@@ -31,4 +31,4 @@ long long maxsubsum(vector<int> arr, int n){
     if(maxi<0) maxi=0;
     return maxi;
 }
-isme we only return the maximum element, not the subarray
+isme we only return the maximum sum, not the subarray

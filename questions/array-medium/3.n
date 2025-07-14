@@ -35,9 +35,10 @@ int majority_element(int *arr,int n){
         else if(ele==arr[i]) cnt++;
         else cnt--;
     }
+    ye jab krna hai interviewer bole find majority element if it exist mtlb surity nahi hai ki majority element h  ya nhi hai tab.
     int cnt1=0;
     for(auto i=0;i<n;i++){
         if(ele==arr[i]) cnt1++;
     }
-    return cn1>n/2 ? ele : -1;
+    return cnt1>n/2 ? ele : -1;
 }
