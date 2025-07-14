@@ -20,7 +20,7 @@ int countsubarrays(vector<int> arr, int k){
     mpp[0]=1;
     int presum=0,count=0;
     for(auto i=0;i<arr.size();i++){
-        preSum=arr[i];
+        preSum+=arr[i];
         int rem= presum-k;
         cnt+=mpp[rem]; count ko plus krdo agar map me wo presum value hai
         mpp[preSum]+=1; next presum ko store kro
