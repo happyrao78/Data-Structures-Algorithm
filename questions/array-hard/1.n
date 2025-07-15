@@ -1,0 +1,77 @@
+pascal's triangle problem
+
+there are three varities of this problem 
+- given row and col just tell what element is present
+
+brute force - tc=o(n)+o(r)+o(n-r), sc=o(1)
+using ncr formula 
+
+but a better and optimal approach for this varitey would be ki hum repeating elements ko na use kre instead identify a pattern. and isme ye pattern h ki jitne r hoge utne hi no of iterations chlane hai humne baki sb to n-r se cancel hojayege
+
+func ncr(n,r){
+    long long res=1;
+    for(int i=0;i<r;i++){
+        res=res*(n-i);
+        res=res/i+1;
+    }
+    return res;
+}
+tc=o(r),sc=o(1);
+
+-------------------------------------------------------------------------------
+
+- print any of the row of passcals  triangle 
+initial approach - call the above func ncr function and print it but tc=o(n*r) not good complexity and also we can be asked not to repeat the formula, follow better approach:
+
+vector<int> generateRow(int row){
+        long long ans=1;
+        vector<int> ansRow;
+        ansRow.push_back(1); // as first element is always one
+        for(int col=1;col<row;col++){
+            ans= ans*(row-col);
+            ans=ans/col;
+            ansRow.push_back(ans);
+        }
+        return ansRow;
+    }
+
+o(n), sc=o(1);
+
+-------------------------------------------------------
+
+varitey-3
+print the pascals triangle
+brute force= 
+vector<int> ans;
+for(auto i=1;i<n;i++){
+    for(auto j=1;j<row;j++){
+        vector<int> temp;
+        temp.add(ncr(row-1,col,1));
+    }
+}
+ans.add(temp);
+return ans; 
+tc=o(n3) sc=o(1)
+
+optimal soltuion:
+tc=o(n2),sc=o(1);
+
+vector<int> generateRow(int row){
+        long long ans=1;
+        vector<int> ansRow;
+        ansRow.push_back(1);
+        for(int col=1;col<row;col++){
+            ans= ans*(row-col);
+            ans=ans/col;
+            ansRow.push_back(ans);
+        }
+        return ansRow;
+    }
+
+vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans;
+        for(int i=1;i<=numRows;i++){
+            ans.push_back(generateRow(i));
+        }
+        return ans;
+    }
