@@ -1,0 +1,73 @@
+// tell the elements which appear more than n/3 times in a array where n is the size of the array
+
+brute force :
+run two loops 0->n-1
+before second loop we check for one condition,agar list ka size 0 hai  ya fir element is there or not
+then we set the count to  0 initially
+in second loop if arr[i]==arr[j] count++;
+if(count>n/3) add it to the list and then return the list.
+
+time complexity=o(n2)
+space complexity=o(1)
+------------------------
+better approach:
+here we will firstly decrease the time complexity by using the hashmap strategy
+
+we will take a hashmapp and store the frequency of every element and instead of iterating again through map we will just put a check in the first iteration only and then push it to the new list.
+
+maximum element=n/3
+
+if(mpp[arr[i]==min]){
+    ls.add[arr[i]];
+}
+if(ls.size()==2) break;
+
+return ls;
+tc=o(n)+o(logn) if ordered map
+sc=o(n)
+---------------------
+optimal  solution we will be following the mores voting algorithm where we will try to cancel out  each value with ooother and the one which stay will be the ans
+
+tc=o(n),sc=o(1)
+
+in n/2 we did for one elemennt, but here we have to return 2
+code:
+vector<int> maximumelement(vector<int> arr){
+    int n=arr.size();
+    int ele1=INT_MINT,ele2=INT_MIN;
+    int cnt1=0;,cnt2=0;
+    for(int i=0;i<n;i++){
+        if(cnt1==0 && arr[i]!=ele2){
+            cnt1=1;
+            ele1=arr[i];
+        }
+        else if(cnt2==0 && arr[i]!=ele1){
+            cnt2=1;
+            ele2=arr[i];
+        }
+        else if(arr[i]==ele1) cnt1++;
+        else if(arr[i]==ele2) cnt2++;
+        else{
+            cnt1--;
+            cnt2--;
+        }
+    }
+    // verification method ki wo exist bhi krta hai ya nahi
+
+    vector<int> ls;
+    cnt1=0;
+    cnt2=0;
+    int mini= (int)(n/3)+1;
+    for(int i=0;i<n;i++){
+        if(ele1==arr[i]) cnt1++;
+        if(ele2==arr[i]) cnt2++;
+    }
+    if(cnt1>=mini){
+        ls.push_back(ele1);
+    }
+    if(cnt2>=mini){
+        ls.push_back(ele2);
+    }
+    sort(ls.begin(),ls.end());
+    return ls;
+}
