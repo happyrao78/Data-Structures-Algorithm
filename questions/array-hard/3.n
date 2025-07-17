@@ -1,0 +1,24 @@
+// three sum problem 
+
+brute force : 
+declare vector<vector<int>> ans
+take three loops if their sum==0 take temp vector and store them, then sort temp, and insert into set data strucutre, and then store in ans vector.
+
+tc=o(n3)+o(log(unique element))
+sc=2*o(no of unique triplets)
+------------------------------
+
+better approach:
+time complexity kam karege by reducing the last loop
+
+vector<vector<int>> triplet(vector<int> arr, int n){
+    for(auto i =0;i<n;i++){
+        for(auto j=i+1;j<n;j++){
+            vector<int> hashset;
+            int third=-(arr[i]+arr[j]);
+            if()
+        }
+    }
+}
+tc=o(n2)+logm for set insertion 
+sc=o(n)+o(unique triplets)*2 as we use external ds list of list 
