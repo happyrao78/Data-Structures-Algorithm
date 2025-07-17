@@ -11,14 +11,58 @@ sc=2*o(no of unique triplets)
 better approach:
 time complexity kam karege by reducing the last loop
 
-vector<vector<int>> triplet(vector<int> arr, int n){
+vector<vector<int>> triplet(vector<int> num, int n){
+    set<vector<int>> st; //uniquely storing the values 
+
     for(auto i =0;i<n;i++){
+        set<int> hashset;
         for(auto j=i+1;j<n;j++){
-            vector<int> hashset;
-            int third=-(arr[i]+arr[j]);
-            if()
+            int third=-(num[i]+num[j]);
+            if(hashset.find(third)!=hashset.end()){
+                vector<int> temp={num[i],num[j],third};
+                sort(temp.begin(),temp.end());
+                st.insert(temp);
+            }
+            hashset.insert(num[j]);
         }
     }
+    vector<vector<int>> ans(st.begin(),st.end());
 }
 tc=o(n2)+logm for set insertion 
 sc=o(n)+o(unique triplets)*2 as we use external ds list of list 
+
+--------------------------------
+
+optimal approach:
+-two pointer approach
+-array ko phle hi sort krlege
+-hume isme set data strucutre use krne ki need hi nhi pdegi to humari isse space complexity kam hojayegi
+- also koi element repeat nhi hoga kyuki hum cheqs lga dege sab
+code:
+
+vector<vector<int>> triplet(vecctor<int> arr, int n){
+    vector<vector<int>> ans;
+    sort(arr.begin(),arr.end());
+    for(int i=0;i<n;i++){
+        if(i>0 && arr[i]==arr[i-1]) continue; 
+        int j=i+1;
+        int k=n-1;
+        while(j<k){
+            if(sum < 0){
+                j++;
+            }
+            else if(sum > 0){
+                k--;
+            }
+            else{
+                vector<int>temp={arr[i],arr[j],arr[k]};
+                ans.push_back(temp);
+                j++;
+                k--;
+                while(j<k && arr[j]==arr[j-1])j++;
+                while(j<k && arr[k]==arr[k+1])k--;
+            }
+        }
+    }
+    return ans;
+}
