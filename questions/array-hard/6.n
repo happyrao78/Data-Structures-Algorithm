@@ -1,0 +1,54 @@
+count the given subarrays with xor k
+
+brute force solution:
+use three loops and iterate through them and if xor ==k count++ and then return count;
+
+int countsubxor(vector<int> arr,int k,int n){
+    for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+            int xor=0;
+            for(int k=i;k<j;k++){
+                xor^=arr[i];
+                if(xor==k) count++;
+            }
+        }
+    }
+    return count;
+}
+tc=o(n3), sc=o(1)
+-------------------------------------------
+better approach:
+
+we will just use the two loops and then reduce the time complexity to o(n2)
+
+int countsubxor(vector<int> arr,int k,int n){
+    for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+            int xor=0;
+            xor^=arr[j]
+            if(xor==k) count++;
+        }
+    }
+    return count;
+}
+------------------------------------
+
+optimal solution: 
+we will check foreach element with equation as x=xr^k, where k is the given xor value. 
+we will store the frequencies of occurence as per based equation in the hashmap and increase the counter varibaleonce we find the equation getting satisfied.
+
+tc=o(nlogn), sc-o(n)
+
+int countsubxor(vector<int> arr,int k,int n){
+        int xr=0;
+        map<int,int> mpp;
+        mpp[xr]++; // stores{0,1} initially
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            xr=xr^arr[i];
+            int x = xr^k;
+            cnt+=mpp[x]; // increase count agar map me x ki value  hai to
+            mpp[xr]++; // keep adding the xr value in map key valuepair
+        }
+    return count;
+}
