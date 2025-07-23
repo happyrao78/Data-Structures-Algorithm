@@ -1,0 +1,92 @@
+merge two sorted array without extra space
+
+brute force:
+tc=o(m+n)+o(m+n)
+sc=o(m+n)
+
+- we  will take array 3 and point two  pointers i and j on the arr1 and arr2 
+void merge(int arr1,int n, int arr2, int m){
+    int left=0, right=0;
+    int arr3[m+n];
+    int index=0;
+    while(left < n && right < m){
+        if(arr1[left]<=arr2[right]){
+            arr3[index++]=arr1[left++];
+        }
+        else{
+            arr3[index++]=arr2[right++];
+        }
+    }
+    // still agar elements bche hai left and right me to do this
+    while(left < n){
+        arr3[index++]=arr1[left++];
+    }
+    while(right<m){
+        arr3[index++]=arr2[right++];
+    }
+    for(int i=0;i<m+n;i++){
+        if(i<n) arr1=arr3[i]; left array me elements daldo ab third array se nikal kr 
+        else arr2[i-n]=arr3[i]; right array me elements daldo ab third array me se nikal kr
+    }
+}
+-----------------
+
+optimal solution-1 
+tc=o(min(m,n))+o(nlogn)+o(mlogm)
+sc=o(1)
+two pointer appraoch 
+void merge(int arr1,int n, int arr2, int m){
+    int left=n-1;
+    int right=0;
+    while(left >=0 && right <m){
+        if(arr1[left]>arr2[right]){
+            swap(arr1[left],arr2[right]);
+            left--,right++;
+        }
+        else{
+            break;
+        }
+    }
+    sort(arr1,arr1+n);
+    sort(arr2,arr2+m);
+
+    for(int i=0;i<m;i++){
+        arr1[n+i]=arr2[i]; // second array ki sari values ko first array me remaining places pr add krdo simply.
+    }
+}
+-------------------
+optimal solution-2
+tc=o(log2(m+n))+o(m+n);
+sc=o(1) no extra space
+
+in this we will use the gap method derived by the shell sort to merge the arrays 
+class solution:
+private:
+    void swaparray(int arr1,int n, int arr2, int m,int ind1,int ind2){
+    if(arr1[ind1]>arr2[ind2]){
+        swap(arr1[ind1],arr2[ind2]);
+        }
+    }
+public:
+    void mergearray(int arr1,int n, int arr2, int m){
+        int len=m+n;
+        int gap=(len/2)+(len%2);
+        while(gap > 0){
+            int left=0;
+            int right=left+gap;
+            while(right < len){
+                if(left < n && right>=m ){
+                    swaparray(arr1,arr2,left,right-n);
+                }
+                else if(left >=n){
+                    swaparray(arr1,arr2,left-n, right-n);
+                }
+                else{
+                    swaparray(arr1,arr2,left,right);
+                }
+                left++,right++;
+            }
+        }
+        if(gap==1) break;
+        gap=(len/2)+(len%2);
+    }
