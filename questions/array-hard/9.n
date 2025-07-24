@@ -1,0 +1,114 @@
+find the missing and repeating number from the array
+
+brute force:
+tc-o(n2)
+sc-o(1)
+
+int repeating=-1,missing=-1;
+for(int i=0;i<n;i++){
+    int count=0;
+    for(int j=0;j<n-1;j++){
+        if(arr[j]==i){
+            count++;
+        }
+    }
+    if(count==2) repeating=i;
+    if(count==0) missing=i;
+    if(repeating !=-1 && missing !=-1){
+        break;
+    }
+}
+----------------------------------------------------
+
+better solution:
+tc=o(2n)
+sc=o(n)
+
+vector<int> findmisrep(vector<int> arr){
+    int n=arr.size();
+    int missing=-1,repeating=-1;
+    int hash[n+1]={0}; // initialize the array and declare all elements as 0
+    for(int i=0;i<n+;i++){
+        hash[arr[i]]++;
+    }
+    for(int i=1;i<n;i++){
+        if(hash[i]==2){
+            repeating=i;
+        }
+        else if(hash[i]==0){
+            missing=i;
+        }
+        if(repeating!=-1 && missing !=-1) break;
+    }
+    return {missing, repeating};
+}
+
+--------------------------
+
+optimal solution:
+tc=o(n)
+sc-o(1)
+
+vector<int> misrep(vector<int> arr){
+    int n=arr.size();
+    long long SN=(n*(n+1))/2;
+    long long 
+    S2N=(n*(n+1)*(2n+1))/6;
+    long long S=0,SN=0;
+    for(int i=0;i<n;i++){
+        S+=arr[i];
+        SN=(long long)arr[i]*(long long)arr[i];
+    }
+    long long val1=S-SN;
+    long long val2=S2-S2N;
+    val2=val2/val1;
+    long long x=(val1+val2)/2;
+    long long y=x-val1;
+    return {(int)x,(int)y};
+}
+
+---------------------------
+optimal solution -2 xor wala
+tc-o(n), sc-o(1)
+vector<int> misrep(vector<int> a){
+    int n=a.size();
+    int xr=0;
+    step1 find xor of all elements
+    for(int i=0;i<n;i++){
+        xr=xr^a[i];
+        xr=xr^(i+1);
+    }
+    step2 find the differentiating bit 
+    int number=(xr & (xr-1));
+
+    step 3 group the numbers in 0 and 1 family and xor them
+
+    int zero=0;
+    int one=0;
+    for(int i=0;i<n;i++){
+        part of 1 group:
+        if((ar[i] & number) !=0){
+            one^=a[i];
+        }
+        part of group 2:
+        else{
+            zero^=a[i];
+        }
+    }
+    for(int i=1;i<=n;i++){
+        if((i & number)!=0){
+            one^=i;
+        }
+        else{
+            zero^=i;
+        }
+    }
+
+    last step: identify the numbers as repeating and missing 
+    int cnt=0;
+    for(int i=0;i<n;i++){
+        if(a[i]==zero) cnt++;
+    }
+    if(cnt==2) return {zero,one};
+    return {one, zero};
+}
