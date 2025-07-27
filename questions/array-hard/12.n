@@ -1,0 +1,25 @@
+maximum product subarray
+
+brute force:
+tc=o(n3),sc=o(1);
+
+better approach:
+tc=o(n2),sc=o(1)
+
+optimal solution:
+tc=o(n)
+sc=o(1)
+
+int returnMaxProdSubarray(vector<int> &arr,int n){
+    int prefix=1,suffix=1;
+    int prod=1;
+    int maxi=INT_MIN;
+    for(auto i=0;i<n;i++){
+        if(prefix==0)prefix=1;
+        if(suffix==0) suffix=1;
+        prefix*=arr[i];
+        suffix*=arr[n-i-1];
+        maxi=max(maxi,max(prefix,suffix));
+    }
+    return maxi;
+}
