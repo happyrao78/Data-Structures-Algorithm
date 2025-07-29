@@ -8,7 +8,7 @@ int countsubxor(vector<int> arr,int k,int n){
         for(int j=i;j<n;j++){
             int xor=0;
             for(int k=i;k<j;k++){
-                xor^=arr[i];
+                xor^=arr[k];
                 if(xor==k) count++;
             }
         }
