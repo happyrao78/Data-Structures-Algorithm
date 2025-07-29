@@ -1,0 +1,25 @@
+array lower bound finding. 
+
+lower bound basically means the index where arr[i] >=x and x is the given element.
+brute force :
+using linear search where tc=o(n)
+
+for this  we will be using the binary search algorithm simply
+tc=o(logn);
+// where n is the size of array and x is the given element
+
+int lowerBound(vector<int> arr, int n, int x) {
+	int low=0,high=n-1;
+	int ans=n;
+	while(low<=high){
+		int mid=(low+high)/2; //preventing the overflow
+		if(arr[mid] >=x){
+			ans=mid; // it maybe my answer
+			high=mid-1; // go and check for the smaller index
+		}
+		else{
+			low=mid+1; // go and check for the right array
+		}
+	}
+	return ans;
+}
