@@ -1,0 +1,34 @@
+find x in sorted array using binary search
+
+there are approaches for this one is iterative approach and the other one is recursive approach , however the tc is same in both o(logn);
+
+iterative approach:
+int findelement(vector<int>&arr,int target){
+    int low=0,high=arr.size()-1;
+    while(low<=high){
+        int mid=low+(high-low)/2; //in order to prevent overflow during INT_MAX=high 
+        if(arr[mid]==target) return mid;
+        elif(target>arr[mid]){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return -1;
+}
+
+recursive approach:
+
+int bs(vector<int> &arr,int low,int high,int target){
+    long long mid=low+(high-low)/2;
+    if(low>high) return -1; //base condtion
+    if(arr[mid]==target) return mid;
+    elif(target>arr[mid]){
+        return bs(arr,mid+1,high,target);
+    }
+    return bs(arr,low,mid-1,target);
+}
+int binarysearch(vector<int>7arr,int target){
+    return bs(arr,0,arr.size()-1,target);
+}
