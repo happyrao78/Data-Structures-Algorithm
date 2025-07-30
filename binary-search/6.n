@@ -1,0 +1,112 @@
+count first or last occurence of an number in a sorted array
+
+brute force:
+for(int i=0;i<n-1;i++){
+    if(arr[i]==k){
+        if(first==-1) first=i;
+        last=i;
+    }
+}
+return {first,last};
+
+tc=o(n)
+-------------------------------
+
+optimal solution :
+using lower and upper bound: take three edge cases
+
+find lowerbound first
+
+int lowerBound(vector<int> &arr,int n,int k){
+    int low=0;
+    int high=n-1;
+    int ans=n;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]>=k){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+
+find upperbound
+int upperBound(vector<int> &arr,int n,int k){
+    int low=0;
+    int high=n-1;
+    int ans=n;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]>k){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+
+pair<int, int> firstAndLastPosition(vector<int>& arr, int n, int k)
+{
+    int lb=lowerBound(arr,n,k);
+    if(lb==n || arr[lb]!=k) return {-1,-1}; //edge case to check on ki overbound nhi hai and also element alag na ho 
+    return {lb,upperBound(arr,n,k)-1};
+}
+
+tc=2*logn;
+
+--------------------------------------
+optimal solution two with pure binary search implementation:
+tc=2*logn
+
+int firstOccurence(vector<int> &arr,int n,int k){
+int low=0,high=n-1;
+int ans=-1;
+while(low<=high){
+    int mid=(low+high)/2;
+    if(arr[mid]==k){
+        ans=mid;
+        high=mid-1; // move left eleiminating right search space;
+    }
+    elif(arr[mid] < k){
+        low=mid+1; //eliminate left search space and move right;
+    }
+    else{
+        high=mid-1;
+    }
+}
+return ans;
+}
+
+int secondOccurence(vector<int> &arr,int n,int k){
+int low=0,high=n-1;
+int ans=-1;
+while(low<=high){
+    int mid=(low+high)/2;
+    if(arr[mid]==k){
+        ans=mid;
+        low=mid+1; // move right eleiminating left search space;
+    }
+    elif(arr[mid] < k){
+        low=mid+1; //eliminate left search space and move right;
+    }
+    else{
+        high=mid-1;
+    }
+}
+return ans;
+}
+
+pair<int,int> firstandlastOccurence(vector<int> &arr,int n,int k){
+    int first=firstOccurence(arr,n,k);
+    if(first ==-1) return {-1,-1};
+    int last=secondOccurence(arr,n,k);
+    return {first,last};
+}
+
