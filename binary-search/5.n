@@ -1,0 +1,41 @@
+return the floor and ceil values not indexes
+
+int floorValue(vector<int> &arr,int n,int x){
+    int low=0;
+    int high=n-1;
+    int floor=-1;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]<=x){
+            floor=arr[mid];
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return floor;
+}
+
+int ceilValue(vector<int> &arr,int n,int x){
+    int low=0;
+    int high=n-1;
+    int ceil=-1;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]<=x){
+            ceil=arr[mid];
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ceil;
+}
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+	int f= floorValue(a,n,x);
+	int c= ceilValue(a,n,x);
+	return {(int)f,(int)c};
+}
