@@ -1,0 +1,33 @@
+count how many times the array is rotated
+
+int countArrayRotation(vector<int> &arr,int n){
+    int low=0;
+    int high=n-1;
+    int ans=INT_MAX;
+    int idx=0;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[low]<=arr[high]){
+            if(arr[low]<ans){
+                idx=low;
+                ans=arr[low];
+            }
+            breaK;
+        }
+        if(arr[low]<=arr[mid]){
+            if(arr[low]<ans){
+                idx=low;
+                ans=arr[low];
+            }
+            low=mid+1;
+        }
+        else{
+             if(arr[mid]<ans){
+                idx=mid;
+                ans=arr[mid];
+            }
+            high=mid-1;
+        }
+    }
+    return idx;
+}
