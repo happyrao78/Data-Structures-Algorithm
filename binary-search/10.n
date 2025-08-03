@@ -12,7 +12,7 @@ int minValue(vector<int> &arr){
         int mid=(low+high)/2;
         if(arr[low]<=arr[high]){
             ans=min(ans,arr[low]);
-            break;
+            break; we will just break the loop once after iteration
         }
         if(arr[low]<=arr[mid]){
             low=mid+1;

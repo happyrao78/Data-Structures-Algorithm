@@ -10,7 +10,7 @@ tc=o(logn);
 
 int upperBound(vector<int> arr, int n, int x) {
 	int low=0,high=n-1;
-	int ans=n;
+	int ans=n; size of the array
 	while(low<=high){
 		int mid=(low+high)/2; //preventing the overflow
 		if(arr[mid] > x){

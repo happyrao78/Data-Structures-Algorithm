@@ -7,7 +7,7 @@ int countArrayRotation(vector<int> &arr,int n){
     int idx=0;
     while(low<=high){
         int mid=(low+high)/2;
-        if(arr[low]<=arr[high]){
+        if(arr[low]<=arr[high]){ if we believe that whole array is sorted 
             if(arr[low]<ans){
                 idx=low;
                 ans=arr[low];

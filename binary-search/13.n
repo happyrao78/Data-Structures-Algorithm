@@ -18,7 +18,7 @@ int peakelement(vector<int> &arr,int n){
     if(n==1) return 0;
     if(arr[0] > arr[1]) return 0;
     if(arr[n-1]>arr[n-2]) return n-1;
-    int low=1,high=n-2;
+    int low=1,high=n-2; // hence we will trim off the array from start and last by one index each
     while(low<=high){
         int mid=(low+high)/2;
         if(arr[mid] > arr[mid-1] && arr[mid] > arr[md+1]){
