@@ -1,0 +1,41 @@
+find the maximum integer which on squaring <= n 
+
+or
+
+find the square root of a number and return floor value if perfect square doesnt exist
+
+brute force:
+
+tc=o(n)
+
+for(auto i=0;i<=n;i++){
+    if(i*i<=n){
+        ans=i;
+    }
+    else{
+        break;
+    }
+}
+
+optimal solution:
+
+whenever we have defined range and have been asked for maximum or minimum value, always binary search will be applied.
+
+tc=o(logn)
+
+int squareRoot(int n){
+    int low=1,high=n;
+    if(n==0) return 0;
+    int ans=1;
+    while(low<=high){
+        long long mid= (low+high)/2;
+        if(mid*mid<=n){
+            ans=mid;
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return ans;
+}
