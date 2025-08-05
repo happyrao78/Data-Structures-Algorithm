@@ -45,6 +45,7 @@ bool possible(vector<int> arr,int days,int m, int k){
 int minDays(vector<int>& arr, int m, int k) {
     int val=m*1LL*k*2LL
     int mini= INT_MAX,maxi=INT_MIN;
+    if(val >arr.size()) return -1;
     for(int i=0;i<arr.size();i++){
         mini=min(mini,arr[i]);
         maxi=max(maxi,arr[i]);
