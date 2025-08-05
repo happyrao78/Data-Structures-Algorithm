@@ -1,0 +1,69 @@
+koko eating bananas
+
+brute force:
+tc-o(n)+o(max(element in array));
+
+int findmax(vector<int> arr){
+    int maxi=INT_MIN;
+    int n=arr.size();
+    for(int i=0;i<n;i++){
+        maxi=max(maxi,arr[i]);
+    }
+    return maxi;
+}
+
+int calculatehrs(vector<int> arr, int hour){
+    int totalhrs=0;
+    int n=arr.size();
+    for(int i=0;i<n;i++){
+        totalhrs+=ceil((double)arr[i]/(double(hour)));
+    }
+    return totalhrs;
+}
+
+int return speed(vector<int> &arr,int hourly){
+    int n=findmax(arr);
+    for(int i=0;i<n;i++){
+        long long totalhrs=caluclatehrs(arr,i);
+        if(totalhrs < =h){
+            return i;
+        }
+    }
+}
+=======================================================
+
+optimal approach:
+time complexity=o(log(max element))+o(n);
+
+int findmax(vector<int> arr){
+    int maxi=INT_MIN;
+    int n=arr.size();
+    for(int i=0;i<n;i++){
+        maxi=max(maxi,arr[i]);
+    }
+    return maxi;
+}
+
+long long calculatehrs(vector<int> arr, int hour){
+    long long totalhrs=0;
+    int n=arr.size();
+    for(int i=0;i<n;i++){
+        totalhrs+=ceil((double)arr[i]/(double(hour)));
+    }
+    return totalhrs;
+}
+
+int minEatingSpeed(vector<int>& piles, int h) {
+        long long low=1,high=findMax(piles);
+        while(low<=high){
+            long long mid=(low+high)/2;
+            long long totalHrs = calculateHrs(piles,mid);
+            if(totalHrs <= h){
+                high=mid-1; eliminate right search space
+            }
+            else{
+                low=mid+1; eliminate left search space
+            }
+        }
+        return low;
+    }
