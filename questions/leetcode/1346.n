@@ -1,0 +1,38 @@
+check if n and its double exists
+
+brute force :
+
+class Solution {
+public:
+
+    bool checkIfExist(vector<int>& arr) {
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(arr[i]==2*arr[j] && i!=j){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+===========================
+optimal solution : o(nlogn)
+
+
+class Solution {
+public:
+
+    bool checkIfExist(vector<int>& arr) {
+        int n=arr.size();
+        unordered_map<int,int> mpp;
+        for(int i=0;i<n;i++){
+            if(mpp.find(2*arr[i])!=mpp.end() || arr[i]%2==0 && mpp.find(arr[i]/2)!=mpp.end()){
+                return true;
+            }
+            mpp[arr[i]]++;
+        }
+        return false;
+    }
+};
