@@ -1,0 +1,91 @@
+capacity to ship packages
+
+brute force:
+tc=osum-(max)*o(n);
+
+ int findDays(vector<int> arr, int cap){
+        int load=0,day=1;
+        for(int i=0;i<arr.size();i++){
+            if(load+arr[i] > cap){
+                day+=1;
+                load=arr[i];
+            }
+            else{
+                load+=arr[i];
+            }
+        }
+        return day;
+    }
+    int  findmax(vector<int> arr){
+        int n=arr.size();
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+            maxi=max(maxi,arr[i]);
+        }
+        return maxi;
+    }
+    int summation(vector<int> arr){
+        int n=arr.size();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+        }
+        return sum;
+    }
+    int start=findmax(arr);
+    int end=summation(arr);
+    for(int i=start;i<end;i++){
+        int dayreq=findDays(arr,cap);
+        if(dayreq<=days)
+        return dayreq;
+    }
+============================================================
+
+optimal code:
+
+tc=o(log(sum-max))*o(n);
+
+
+ int findDays(vector<int> arr, int cap){
+        int load=0,day=1;
+        for(int i=0;i<arr.size();i++){
+            if(load+arr[i] > cap){
+                day+=1;
+                load=arr[i];
+            }
+            else{
+                load+=arr[i];
+            }
+        }
+        return day;
+    }
+    int  findmax(vector<int> arr){
+        int n=arr.size();
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+            maxi=max(maxi,arr[i]);
+        }
+        return maxi;
+    }
+    int summation(vector<int> arr){
+        int n=arr.size();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+        }
+        return sum;
+    }
+
+    int shipwithindays(vector<int> &wt, int days){
+        int low=findmax(wt),high=summation(wt);
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(findDays(wt,mid)<=days){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
