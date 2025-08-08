@@ -1,0 +1,64 @@
+split array-largest sum
+
+similar to painter's partition pb
+
+which was indeed similar to book allocation pb;
+
+brute force:
+tc=o(sum-max)*o(n);
+===================
+
+optimal code:
+
+time coplexity=o(log(sum-max)*n);
+
+class Solution {
+public:
+    int findmax(vector<int> arr){
+	int n=arr.size();
+	int maxi=INT_MIN;
+	for(int i=0;i<n;i++){
+		maxi=max(maxi,arr[i]);
+	}
+	return maxi;
+    }
+
+    int findsum(vector<int> arr){
+	int n=arr.size();
+	int sum=0;
+	for(int i=0;i<n;i++){
+		sum+=arr[i];
+	}
+	return sum;
+    }
+
+    int countk(vector<int> arr,int pages){
+        int k=1, pgcount=0;
+        for(int i=0;i<arr.size();i++){
+            if(pgcount+arr[i] <=pages){
+                pgcount+=arr[i];
+            }
+            else{
+                k++;
+                pgcount=arr[i];
+            }
+        }
+        return k;
+    }
+
+    int allocatecount(vector<int> arr,int n,int k){
+        if(k > n) return -1;
+        int low=findmax(arr),high=findsum(arr);
+        while(low<=high){
+            int mid=(low+high)/2;
+            int cnt=countk(arr,mid);
+            if(cnt > k) low=mid+1;
+            else high=mid-1;
+        }
+        return low;
+    }
+
+    int splitArray(vector<int>& nums, int k) {
+        return allocatecount(nums,nums.size(),k);
+    }
+};
