@@ -1,0 +1,61 @@
+painter's partition:
+
+similar to book allocation problem
+
+brute force:
+tc=o(sum-max)*o(n);
+===================
+
+optimal code:
+
+time coplexity=o(log(sum-max)*n);
+
+#include<bits/stdc++.h>
+int findmax(vector<int> arr){
+	int n=arr.size();
+	int maxi=INT_MIN;
+	for(int i=0;i<n;i++){
+		maxi=max(maxi,arr[i]);
+	}
+	return maxi;
+}
+
+int findsum(vector<int> arr){
+    int n=arr.size();
+	int sum=0;
+	for(int i=0;i<n;i++){
+		sum+=arr[i];
+	}
+	return sum;
+}
+
+int cntpainter(vector<int> arr,int pages){
+    int stud=1,pgcnt=0;
+    for(int i=0;i<arr.size();i++){
+        if(pgcnt+arr[i]<=pages){
+            pgcnt+=arr[i];
+        }
+        else{
+            stud++;
+            pgcnt=arr[i];
+        }
+    }
+    return stud;
+}
+
+int partition(vector<int>arr, int n,int k){
+    int low=findmax(arr),high=findsum(arr);
+    while(low<=high){
+        int mid=(low+high)/2;
+        int cnt=cntpainter(arr,mid);
+        if(cnt > k) low=mid+1;
+        else high=mid-1;
+    }
+    return low;
+}
+
+int findLargestMinDistance(vector<int> &boards, int k)
+{
+    return partition(boards,boards.size(),k);
+
+}
