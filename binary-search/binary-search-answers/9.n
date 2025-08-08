@@ -1,0 +1,57 @@
+book allocation pb:
+
+brute force:
+tc=o(sum-max)*o(n);
+===================
+
+optimal code:
+
+time coplexity=o(log(sum-max)*n);
+
+int findmax(vector<int> arr){
+	int n=arr.size();
+	int maxi=INT_MIN;
+	for(int i=0;i<n;i++){
+		maxi=max(maxi,arr[i]);
+	}
+	return maxi;
+}
+
+int findsum(vector<int> arr){
+	int n=arr.size();
+	int sum=0;
+	for(int i=0;i<n;i++){
+		sum+=arr[i];
+	}
+	return sum;
+}
+
+int countstudents(vector<int> arr, int pages){
+    int studcnt=1,pgcnt=0;
+    for(int i=0;i<arr.size();i++){
+        if(pgcnt+arr[i] <=pages){
+            pgcnt+=arr[i];
+        }
+        else{
+            studcnt++;
+            pgcnt=arr[i];
+        }
+    }
+    return studcntl
+}
+
+int allocateBooks(vector<int> &pages, int n, int b){
+    if(n > b) return -1;   // if no. of books is less than given students
+    int low=findmax(pages),high=findsum(pages);
+    while(low<=high){
+        int mid=(low+high)/2;
+        int cnt=countstudents(pages,mid);
+        if(cnt >b){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return low;
+}
