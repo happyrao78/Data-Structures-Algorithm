@@ -4,7 +4,7 @@ tc=o(log(min(n1,n2)));
 
 #include<bits/stdc++.h>
 int ninjaAndLadoos(vector<int> &nums1, vector<int> &nums2, int n1, int n2, int k) {
-        if(n1>n2) return ninjaAndLadoos(nums2,nums1,n2,n1,k);
+        if(n1>n2) return ninjaAndLadoos(nums2,nums1,n2,n1,k); // checking for the smaller array to get the beenfit of tc=o(log(min(n1,n2)));
         int low=max(k-n2,0),high=min(k,n1);
         int left=k;
         int n=n1+n2;
