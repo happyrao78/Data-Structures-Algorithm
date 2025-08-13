@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// time complexity: o(n*logm)
+
 int lower_bound_find(vector<int> &arr,int n,int x){
     int low=0,high=n-1;
     while(low<=high){

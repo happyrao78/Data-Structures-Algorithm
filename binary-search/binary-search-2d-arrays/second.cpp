@@ -1,5 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
+
+// time complexity: o(log(m*n));
+
 bool searchInTwodMatrix(vector<vector<int>> &matrix,int target){
     int row_size=matrix.size();
     int col_size=matrix[0].size();

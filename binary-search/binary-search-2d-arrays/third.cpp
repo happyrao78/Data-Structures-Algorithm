@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// time complexity: o(m+n)
+
 bool searchElement(vector<vector<int>> &arr, int target) {
     int n=arr.size();
     int m=arr[0].size();
