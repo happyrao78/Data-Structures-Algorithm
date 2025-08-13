@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
+// time complexity: o(log(10^9)*o(nlogm));
+
 int return_upperbound(vector<int> &arr,int x){
     int low=0;
     int n=arr.size();
