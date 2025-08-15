@@ -37,7 +37,7 @@ int countstudents(vector<int> arr, int pages){
             pgcnt=arr[i];
         }
     }
-    return studcntl
+    return studcnt;
 }
 
 int allocateBooks(vector<int> &pages, int n, int b){
