@@ -16,7 +16,7 @@ int lower_bound_find(vector<int> &arr,int n,int x){
 }
 
 int rowWithMax1s(vector<vector<int>> &matrix, int n, int m){
-    int cntMax=0;
+    int cntMax=0; 
     int indx=-1;
     for(auto i=0;i<n;i++){
         int cnt_ones=m-lower_bound_find(matrix[i],m,1);
