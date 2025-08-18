@@ -20,6 +20,7 @@ int return_upperbound(vector<int> &arr,int x){
     return ans;
 }
 
+// counts the number of occurences 
 int blackbox(vector<vector<int>> &arr, int n,int m,int x){
     int cnt=0;
     for(int i=0;i<n;i++){
