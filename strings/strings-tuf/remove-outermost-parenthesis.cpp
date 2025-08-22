@@ -16,7 +16,7 @@ at last return the answer
 #include<bits/stdc++.h>
 using namespace std;
 string removeouterparenthesis(string s){
-    string res="";
+    string res=""; // empty string
     int cnt=0;
     for(int i=0;i<s.length();i++){
         if(s[i]==')') cnt--;
