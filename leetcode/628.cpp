@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// find the max prod
 
 // tc=o(n), sc=o(1)
 int maxprod(vector<int> &arr){
